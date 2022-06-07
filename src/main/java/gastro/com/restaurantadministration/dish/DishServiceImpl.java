@@ -18,4 +18,9 @@ public class DishServiceImpl implements DishService {
     public List<Dish> getListAllDishes() {
         return (List<Dish>) dishRepository.findAll();
     }
+
+    @Override
+    public Dish addDish(Dish dish) {
+        return dishRepository.save(dish);
+    }
 }
