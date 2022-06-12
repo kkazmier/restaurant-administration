@@ -15,13 +15,13 @@ public class DishRestController {
         this.dishService = dishService;
     }
 
-    @GetMapping("/allDishes")
-    List<Dish> getListAllDishes() {
-        return dishService.getListAllDishes();
-    }
-
-    @PostMapping("/addDish")
-    Dish addDish(@RequestBody Dish dish){
-        return dishService.addDish(dish);
-    }
+//    @GetMapping("/allDishes")
+//    List<Dish> getListAllDishes() {
+//        return dishService.getListAllDishes();
+//    }
+//
+//    @PostMapping("/addDish")
+//    Dish addDish(@RequestBody Dish dish){
+//        return dishService.addDish(dish);
+//    }
 }
