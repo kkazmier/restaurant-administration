@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -16,5 +19,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "dishes", schema = "public")
 public class Dish extends BaseEntity {
+    @NotEmpty(message = "{dish.name.notempty}")
     public String name;
+
+    @NotEmpty(message = "{dish.name.notempty}")
+    @DecimalMin(value = "0.01", message = "{dish.price.value}")
+    private BigDecimal price;
 }
