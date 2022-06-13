@@ -43,6 +43,6 @@ public class DishController {
         if (bindingResult.hasErrors()) {
             return "dish-form";
         }
-        return "redirect:/results";
+        return "redirect:/";
     }
 }
