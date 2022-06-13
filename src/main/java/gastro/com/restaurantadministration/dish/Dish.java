@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Getter
@@ -22,7 +23,7 @@ public class Dish extends BaseEntity {
     @NotEmpty(message = "{dish.name.notempty}")
     public String name;
 
-    @NotEmpty(message = "{dish.name.notempty}")
+    @NotNull(message = "{dish.name.notempty}")
     @DecimalMin(value = "0.01", message = "{dish.price.value}")
     private BigDecimal price;
 }
