@@ -26,4 +26,6 @@ public class Dish extends BaseEntity {
     @NotNull(message = "{dish.name.notempty}")
     @DecimalMin(value = "0.01", message = "{dish.price.value}")
     private BigDecimal price;
+
+    private String description;
 }
