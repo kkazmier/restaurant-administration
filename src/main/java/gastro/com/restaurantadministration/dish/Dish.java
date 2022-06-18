@@ -1,5 +1,6 @@
 package gastro.com.restaurantadministration.dish;
 
+import gastro.com.restaurantadministration.bill.Bill;
 import gastro.com.restaurantadministration.model.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
@@ -28,4 +31,8 @@ public class Dish extends BaseEntity {
     private BigDecimal price;
 
     private String description;
+
+    @OneToMany(mappedBy="dishes")
+    @JoinColumn(name="bill_id", nullable=false)
+    private Bill bill;
 }
