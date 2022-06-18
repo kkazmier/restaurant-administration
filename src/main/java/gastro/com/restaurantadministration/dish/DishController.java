@@ -8,11 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("${api.v1}" + "/dish")
@@ -26,8 +24,10 @@ public class DishController {
     }
 
     @GetMapping("/allDishes")
-    List<Dish> getListAllDishes() {
-        return dishService.getListAllDishes();
+    public String getListAllDishes(Model model) {
+        model.addAttribute("allDishes", dishService.getListAllDishes());
+        logger.info(dishService.getListAllDishes().toString());
+        return "dish-list";
     }
 
     @GetMapping("/addDish")
@@ -43,6 +43,7 @@ public class DishController {
         if (bindingResult.hasErrors()) {
             return "dish-form";
         }
-        return "redirect:/";
+        dishService.addDish(dish);
+        return "redirect:/api/v1/dish/allDishes";
     }
 }
