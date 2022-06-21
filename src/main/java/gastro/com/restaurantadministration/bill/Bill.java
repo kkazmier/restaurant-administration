@@ -20,7 +20,8 @@ import java.util.List;
 @Entity
 @Table(name = "bills", schema = "public")
 public class Bill extends BaseEntity {
-    @OneToMany(mappedBy="bills")
+    @OneToMany(mappedBy="bill")
     private List<Dish> dishes;
+
     private BigDecimal totalBillValue;
 }
