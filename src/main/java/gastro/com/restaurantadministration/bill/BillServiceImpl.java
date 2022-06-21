@@ -5,7 +5,9 @@ import gastro.com.restaurantadministration.dish.DishRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BillServiceImpl implements BillService {
     public static final Logger logger= LoggerFactory.getLogger(BillServiceImpl.class);
     private final DishRepository dishRepository;
