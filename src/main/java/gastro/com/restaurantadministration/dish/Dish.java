@@ -30,6 +30,6 @@ public class Dish extends BaseEntity {
     private String description;
 
     @ManyToOne()
-    @JoinColumn(name="bill_id", nullable=false)
+    @JoinColumn(name="bill_id", nullable=true)
     private Bill bill;
 }
