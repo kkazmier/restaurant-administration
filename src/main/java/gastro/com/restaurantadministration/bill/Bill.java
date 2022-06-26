@@ -22,6 +22,15 @@ import java.util.List;
 public class Bill extends BaseEntity {
     @OneToMany(mappedBy="bill")
     private List<Dish> dishes;
-
+    private String paymentType;
     private BigDecimal totalBillValue;
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "dishes=" + dishes +
+                ", paymentType='" + paymentType + '\'' +
+                ", totalBillValue=" + totalBillValue +
+                "} " + super.toString();
+    }
 }
