@@ -24,27 +24,31 @@ public class BillController {
         this.billService = billService;
     }
 
-    @GetMapping("/newBill")
+    @GetMapping("/initBill")
     public String newBill(Model model) {
-        Bill newBill = new Bill();
+        Bill bill = new Bill();
         model.addAttribute("allDishes", dishService.getListAllDishes());
-        model.addAttribute("newBill", newBill);
-        return "prepare-bill";
+        model.addAttribute("newBill", bill);
+        return "init-bill";
     }
 
-    @GetMapping("/addDish/{dishId}/ToBill/{billId}")
-    public String addDishToBill(@PathVariable Long dishId, @PathVariable Long billId,Model model) {
-        Bill bill = (Bill) model.getAttribute("newBill");
+    @GetMapping("/addDish/{dishId}/toBill/{billId}")
+    public String addDishToBill(@PathVariable Long dishId, @PathVariable Long billId, Model model) {
+        Bill bill = new Bill();
         Dish dish = (Dish) model.getAttribute("addedDish");
+        
+        logger.info("new from model bill: " + bill);
+        logger.info("Try add dish to bill.");
         if (bill != null && dish != null) {
             billService.addDishToBill(dish, bill);
             logger.info(dish.name + " added.");
         } else {
             logger.warn("Bill and/or dish not exist.");
+            logger.info(bill.toString());
         }
         model.addAttribute("allDishes", dishService.getListAllDishes());
         model.addAttribute("newBill", bill);
-        return "prepare-bill";
+        return "init-bill";
     }
 
     @GetMapping("/all")
