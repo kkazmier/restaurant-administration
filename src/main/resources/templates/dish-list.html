@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <span class="navbar-text">
             <h1 class="dish-header">Lista dań</h1>
         </span>
@@ -18,16 +18,25 @@
         <thead class="table-dark">
         <tr>
             <th>#</th>
+            <th>Id</th>
             <th>Nazwa</th>
             <th>Cena</th>
             <th>Opis</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tr th:each="dish, custStat : ${allDishes}">
             <td th:text="${custStat.count}"></td>
+            <td th:text="${dish.id}"></td>
             <td th:text="${dish.name}"></td>
             <td th:text="${dish.price}"></td>
             <td th:text="${dish.description}"></td>
+            <td>
+                <div class="row">
+                    <a th:href="@{/api/v1/dish/removeDish/{id}(id=${dish.id})}">
+                        <button type="button" class="btn btn-danger">Usuń danie</button></a>
+                </div>
+            </td>
         </tr>
     </table>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
