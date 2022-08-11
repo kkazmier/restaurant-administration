@@ -5,4 +5,5 @@ import java.util.List;
 public interface DishService {
     List<Dish> getListAllDishes();
     Dish addDish(Dish dish);
+    Boolean removeDish(Long id);
 }
