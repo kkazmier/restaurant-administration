@@ -10,5 +10,6 @@ public class AppConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("api/v1/").setViewName("index");
         registry.addViewController("api/v1/index").setViewName("index");
+        registry.addViewController("api/v1/home").setViewName("index");
     }
 }
