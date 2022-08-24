@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -15,6 +16,7 @@ public class BillController {
     private static final Logger logger = LoggerFactory.getLogger(BillController.class);
 
     private final DishServiceImpl dishService;
+
 
     @Autowired
     public BillController(DishServiceImpl dishService) {
@@ -29,6 +31,13 @@ public class BillController {
     @GetMapping("/newBill")
     public String newBill(Model model) {
         model.addAttribute("allDishes", dishService.getListAllDishes());
+        return "new-bill";
+    }
+
+    @GetMapping("/addDish/{dishId}/ToBill/{billId}")
+    public String addDishToBill(@PathVariable("dishId") Long dishId, @PathVariable("billId") Long billId, Model model) {
+        model.addAttribute("allDishes", dishService.getListAllDishes());
+
         return "new-bill";
     }
 }
