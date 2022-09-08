@@ -23,6 +23,12 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
+    public Dish getDish(Long dishId) {
+        logger.info("Get dish by id: " + dishId);
+        return dishRepository.findById(dishId).get();
+    }
+
+    @Override
     public Dish addDish(Dish dish) {
         return dishRepository.save(dish);
     }
