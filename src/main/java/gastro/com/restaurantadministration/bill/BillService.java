@@ -9,4 +9,5 @@ public interface BillService {
     List<Bill> getAllBills();
     void addDish(Long dishId);
     List<Dish> getDishes();
+    void confirmBill();
 }

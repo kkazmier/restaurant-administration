@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class BillServiceImpl implements BillService {
@@ -46,5 +47,13 @@ public class BillServiceImpl implements BillService {
     @Override
     public List<Dish> getDishes() {
         return dishes;
+    }
+
+    @Override
+    public void confirmBill() {
+        Bill bill = new Bill();
+        bill.setDishes(dishes.stream().collect(Collectors.toSet()));
+        billRepository.save(bill);
+        dishes.clear();
     }
 }

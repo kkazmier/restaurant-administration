@@ -44,8 +44,9 @@ public class BillController {
         return "new-bill";
     }
 
-//    @GetMapping("/confirmBill")
-//    public String confirmBill() {
-//        return "bills";
-//    }
+    @GetMapping("/confirmBill")
+    public String confirmBill() {
+
+        return "bills";
+    }
 }
