@@ -25,7 +25,8 @@ public class BillController {
     }
 
     @GetMapping("/bills")
-    public String bills() {
+    public String bills(Model model) {
+        model.addAttribute("bills", billService.getAllBills());
         return "bills";
     }
 
