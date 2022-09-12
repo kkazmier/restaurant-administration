@@ -8,10 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class BillServiceImpl implements BillService {
@@ -19,8 +16,7 @@ public class BillServiceImpl implements BillService {
     private final BillRepository billRepository;
     private final DishRepository dishRepository;
     private final DishServiceImpl dishService;
-
-    private Map<Dish, Integer> dishes = new HashMap<>();
+    private List<Dish> dishes = new ArrayList<>();
 
     @Autowired
     public BillServiceImpl(BillRepository billRepository, DishRepository dishRepository, DishServiceImpl dishService) {
@@ -42,15 +38,13 @@ public class BillServiceImpl implements BillService {
     @Override
     public void addDish(Long dishId) {
         Optional<Dish> dish = dishRepository.findById(dishId);
-        if(dishes.containsKey(dish)) {
-            dishes.replace(dish.get(), dishes.get(dish) + 1);
-        } else {
-            dishes.put(dish.get(), 1);
+        if(dish.isPresent()) {
+            dishes.add(dish.get());
         }
     }
 
     @Override
-    public Map<Dish, Integer> getDishes() {
+    public List<Dish> getDishes() {
         return dishes;
     }
 }

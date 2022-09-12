@@ -8,22 +8,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
+
 @Controller
 @RequestMapping("${api.v1}" + "/bill")
-@SessionAttributes("newBill")
 public class BillController {
     private static final Logger logger = LoggerFactory.getLogger(BillController.class);
 
+    private final BillServiceImpl billService;
     private final DishServiceImpl dishService;
 
     @Autowired
-    public BillController(DishServiceImpl dishService) {
+    public BillController(BillServiceImpl billService, DishServiceImpl dishService) {
+        this.billService = billService;
         this.dishService = dishService;
-    }
-
-    @ModelAttribute("newBill")
-    public Bill newBill() {
-        return new Bill();
     }
 
     @GetMapping("/bills")
@@ -32,24 +30,22 @@ public class BillController {
     }
 
     @GetMapping("/newBill")
-    public String newBill(Model model, @ModelAttribute("newBill") Bill newBill) {
-        if(newBill != null) {
-            newBill = new Bill();
-        }
+    public String newBill(Model model) {
         model.addAttribute("allDishes", dishService.getListAllDishes());
         return "new-bill";
     }
 
     @GetMapping("/addDish/{dishId}/toBill")
-    public String addDishToBill(@ModelAttribute("newBill") Bill newBill,
-                                @PathVariable("dishId") Long dishId, Model model) {
-        if(newBill != null) {
-            newBill = new Bill();
-        }
-
+    public String addDishToBill(@PathVariable("dishId") Long dishId, Model model) {
+        billService.addDish(dishId);
         model.addAttribute("allDishes", dishService.getListAllDishes());
+        model.addAttribute("selectedDishes", billService.getDishes());
         logger.info("Add dish " + dishId + " to bill ");
-        logger.info(String.valueOf(newBill.getDishes().size()));
         return "new-bill";
     }
+
+//    @GetMapping("/confirmBill")
+//    public String confirmBill() {
+//        return "bills";
+//    }
 }
