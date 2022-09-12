@@ -10,10 +10,10 @@
 <h1 class="dish-header">Dania</h1>
 <tr th:each="dish, custStat : ${allDishes}">
     <td>
-<!--        <button class="add-dish-btn btn-light" th:text="${dish.name + ': ' + dish.price + 'zł'}"-->
-<!--            th:href="@{|/api/v1/addDish/${dish.id}/toBill/${newBill.id}|}">-->
+<!--        <button class="add-dish-btn btn-light" th:text="${dish.name + ': ' + dish.price + 'zł'}">-->
+<!--            <a th:href="@{|/api/v1/bill/addDish/${dish.id}/toBill|}"><\a>-->
 <!--        </button>-->
-        <a th:text="${dish.name + ': ' + dish.price + 'zł'}" th:href="@{|/api/v1/bill/addDish/${dish.id}/toBill|}"></a>
+        <a class="btn btn-lg btn-outline-secondary" th:text="${dish.name + ': ' + dish.price + 'zł'}" th:href="@{|/api/v1/bill/addDish/${dish.id}/toBill|}"></a>
     </td>
 </tr>
 <h1 class="dish-header">Dania</h1>
