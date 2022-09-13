@@ -35,4 +35,8 @@ public class Dish extends BaseEntity {
     @ManyToOne
     @JoinColumn(name="bill_id")
     private Bill bill;
+
+    public Long getId() {
+        return super.getId();
+    }
 }

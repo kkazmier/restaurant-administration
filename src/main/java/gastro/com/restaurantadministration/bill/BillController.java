@@ -45,6 +45,15 @@ public class BillController {
         return "new-bill";
     }
 
+    @GetMapping("/removeDish/{dishId}/fromBill")
+    public String removeDishFromBill(@PathVariable("dishId") Long dishId, Model model) {
+        billService.removeDish(dishId);
+        model.addAttribute("allDishes", dishService.getListAllDishes());
+        model.addAttribute("selectedDishes", billService.getDishes());
+        logger.info("Remove dish " + dishId + " from bill ");
+        return "new-bill";
+    }
+
     @GetMapping("/confirmBill")
     public String confirmBill() {
 

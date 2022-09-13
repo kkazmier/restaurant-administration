@@ -41,6 +41,22 @@ public class BillServiceImpl implements BillService {
         Optional<Dish> dish = dishRepository.findById(dishId);
         if(dish.isPresent()) {
             dishes.add(dish.get());
+            logger.info("Dishes in bill: " + dishes.size());
+        }
+    }
+
+    @Override
+    public void removeDish(Long dishId) {
+        Optional<Dish> dish = dishRepository.findById(dishId);
+        if(dish.isPresent()) {
+            logger.info("Remove dish: " + dish.get().name);
+            for (int i = 0; i < dishes.size(); i++) {
+                if (dishes.get(i).getId().equals(dishId)) {
+                    dishes.remove(i);
+                    break;
+                }
+            }
+            logger.info("Dishes in bill: " + dishes.size());
         }
     }
 
