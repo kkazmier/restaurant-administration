@@ -32,6 +32,11 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
+    public Bill getBill(Long billId) {
+        return billRepository.findById(billId).get();
+    }
+
+    @Override
     public List<Bill> getAllBills() {
         return (List<Bill>) billRepository.findAll();
     }

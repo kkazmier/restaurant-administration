@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-
 @Controller
 @RequestMapping("${api.v1}" + "/bill")
 public class BillController {
@@ -34,6 +32,14 @@ public class BillController {
     public String newBill(Model model) {
         model.addAttribute("allDishes", dishService.getListAllDishes());
         return "new-bill";
+    }
+
+    @GetMapping("/getBill/{billId}")
+    public String getBill(@PathVariable("billId") Long billId, Model model) {
+        Bill bill = billService.getBill(billId);
+        model.addAttribute("bill", bill);
+        model.addAttribute("dishes", bill.getDishes());
+        return "bill-details";
     }
 
     @GetMapping("/addDish/{dishId}/toBill")
