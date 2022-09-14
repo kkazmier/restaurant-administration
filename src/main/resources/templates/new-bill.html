@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1 class="dish-header">Dania</h1>
+<a href="/api/v1/bill/newBill" class="btn btn-lg btn-outline-secondary">Nowy rachunek</a>
 <tr th:each="dish, custStat : ${allDishes}">
     <td>
 <!--        <button class="add-dish-btn btn-light" th:text="${dish.name + ': ' + dish.price + 'zł'}">-->
@@ -16,7 +17,7 @@
         <a class="btn btn-lg btn-outline-secondary" th:text="${dish.name + ': ' + dish.price + 'zł'}" th:href="@{|/api/v1/bill/addDish/${dish.id}/toBill|}"></a>
     </td>
 </tr>
-<h1 class="dish-header">Dania</h1>
+<h1 class="dish-header">Rachunek</h1>
 <tr th:each="dish : ${selectedDishes}">
     <a class="btn btn-sm btn-outline-secondary" th:text="${dish.name}" th:href="@{|/api/v1/bill/removeDish/${dish.id}/fromBill|}"></a>
 </tr>
